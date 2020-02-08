@@ -1,0 +1,22 @@
+import store from '../store'
+
+export default async (to, from, next) => {
+    document.title = to.name
+
+    if (to.name !== 'login' && !store.getters['auth/hasToken']) {
+        try {
+            await store.dispatch('auth/ActionCheckToken')
+
+            next({ name: to.name })
+        } catch (error) {
+            next({ name: 'login' })
+        }
+    } else {
+        //impede o usuário de acessar o login quando já está logado
+        if (to.name === 'login' && store.getters['auth/hasToken']) {
+            next({ name: 'home' })
+        } else {
+            next()
+        }
+    }
+}
