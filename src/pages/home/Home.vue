@@ -6,10 +6,10 @@
     </div>
 
     <div class="home-links">
-      <a href="#" class="home-link">
+      <router-link :to="{name: 'watchlist'}" class="home-link">
         <i class="material-icons md-48">playlist_play</i>
         <span>Wanna watch</span>
-      </a>
+      </router-link>
       <a href="#" class="home-link">
         <i class="material-icons md-48">playlist_add_check</i>
         <span>Already watched</span>
@@ -58,8 +58,9 @@ export default {
   margin: 0 15px;
   flex: 0 0 25%;
   padding: 50px 0;
-  background-color: #ddd;
   transition: 0.4s;
+  color: var(--white);
+  border-radius: 10px;
 
   display: flex;
   align-items: center;
@@ -70,5 +71,15 @@ export default {
   transform: scale(1.1);
   text-decoration: none;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.home-link:first-child {
+  background-color: var(--blue);
+}
+.home-link:nth-child(2) {
+  background-color: var(--orange);
+}
+.home-link:last-child {
+  background-color: var(--red);
 }
 </style>
