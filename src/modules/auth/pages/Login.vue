@@ -37,8 +37,14 @@ export default {
 
   methods: {
     ...mapActions('auth', ['ActionDoLogin']), // params: namespaced e nome da actions
-    submit() {
-      this.ActionDoLogin(this.form).then(res => console.log(res.data))
+    async submit() {
+      try {
+        await this.ActionDoLogin(this.form)
+
+        this.$router.push({ name: 'home' })
+      } catch (error) {
+        alert(error.data ? error.data.message : 'Ops, unable to sign in. Please, try again later!')
+      }
     }
   }
 }
