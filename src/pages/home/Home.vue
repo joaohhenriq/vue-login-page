@@ -30,7 +30,12 @@ export default {
   name: 'Home',
   computed: {
     //pega o auth da store e permite ser usado aqui
-    ...mapState('auth', ['user'])
+    ...mapState('auth', ['user']),
+    routes() {
+      return this.$router.options.routes.filter(route => (
+        route.meta && route.meta.showNavbar
+      ))
+    }
   }
 }; 
 </script> 
